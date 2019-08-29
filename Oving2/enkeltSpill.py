@@ -1,4 +1,5 @@
 from spiller import Spiller
+from testSpiller import TestSpiller
 
 
 class EnkeltSpill:
@@ -10,8 +11,8 @@ class EnkeltSpill:
         self.spiller2_aksjon = None
 
     def gjennomfoer_spill(self):
-        self.spiller1_aksjon = self.spiller1.velgaksjon()
-        self.spiller2_aksjon = self.spiller2.velgaksjon()
+        self.spiller1_aksjon = self.spiller1.velg_aksjon()
+        self.spiller2_aksjon = self.spiller2.velg_aksjon()
         spiller1_poeng = 0
         spiller2_poeng = 0
         if self.spiller1_aksjon == self.spiller2_aksjon:
@@ -32,6 +33,14 @@ class EnkeltSpill:
                  f'{self.spiller2.oppgi_navn()} valgte {self.spiller2_aksjon}'
                  f'{self.resultat}')
         return tekst
+
+
+spiller1 = TestSpiller()
+spiller2 = TestSpiller()
+nyttSpill = EnkeltSpill(spiller1, spiller2)
+nyttSpill.gjennomfoer_spill()
+print(nyttSpill)
+
 
 
 
