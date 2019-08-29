@@ -3,12 +3,14 @@ from aksjon import Aksjon
 
 
 class Spiller:
+    __metaclass__ = abc.ABCMeta
 
     stein = Aksjon("stein")
     saks = Aksjon("saks")
     papir = Aksjon("papir")
+    aksjoner = [stein, saks, papir]
 
-    def __intit__(self):
+    def __init__(self):
         self.poeng = 0
         self.historie = []
         self.motstander_historie = []
@@ -16,6 +18,7 @@ class Spiller:
     @abc.abstractmethod
     def velg_aksjon(self):
         return
+
 
     def motta_resultat(self, selv_valgt, motstander_valgt, poeng):
         self.poeng += poeng

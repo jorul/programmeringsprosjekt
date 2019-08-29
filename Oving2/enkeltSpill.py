@@ -1,5 +1,7 @@
 from spiller import Spiller
-from testSpiller import TestSpiller
+from testSpiller import TestSpiller1
+from testSpiller import TestSpiller2
+from tilfeldig import Tilfeldig
 
 
 class EnkeltSpill:
@@ -21,17 +23,16 @@ class EnkeltSpill:
             self.resultat = 'uavgjort'
         elif self.spiller1_aksjon > self.spiller2_aksjon:
             spiller1_poeng = 1
-            self.resultat = 'spiller 1 vant'
+            self.resultat = f'{self.spiller1.oppgi_navn()} vant'
         else:
             spiller2_poeng = 1
-            self.resultat = 'spiller 2 vant'
+            self.resultat = f'{self.spiller2.oppgi_navn()} vant'
         self.spiller1.motta_resultat(self.spiller1_aksjon,self.spiller2_aksjon,spiller1_poeng)
         self.spiller2.motta_resultat(self.spiller2_aksjon,self.spiller1_aksjon,spiller2_poeng)
 
     def __str__(self):
         tekst = (f'{self.spiller1.oppgi_navn()} valgte {self.spiller1_aksjon}, '
                  f'{self.spiller2.oppgi_navn()} valgte {self.spiller2_aksjon}'
-                 f'{self.resultat}')
+                 f' --> {self.resultat}')
         return tekst
-
-
+        
