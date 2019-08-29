@@ -35,13 +35,3 @@ class EnkeltSpill:
         return tekst
 
 
-spiller1 = TestSpiller()
-spiller2 = TestSpiller()
-nyttSpill = EnkeltSpill(spiller1, spiller2)
-nyttSpill.gjennomfoer_spill()
-print(nyttSpill)
-
-
-
-
-
