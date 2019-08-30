@@ -2,6 +2,8 @@ from enkeltSpill import EnkeltSpill
 from tilfeldig import Tilfeldig
 from testSpiller import TestSpiller1
 from sekvensiell import Sekvensiell
+from mestVanlig import MestVanlig
+from historiker import Historiker
 
 
 class MangeSpill():
@@ -17,8 +19,8 @@ class MangeSpill():
         for i in range(0,self.antall_spill):
             self.arranger_enkeltspill()
 
-s1 = Tilfeldig()
-s2 = Sekvensiell()
+s1 = MestVanlig()
+s2 = Historiker(2)
 
-testing = MangeSpill(s1,s2,6)
+testing = MangeSpill(s1,s2,40)
 testing.arranger_turnering()

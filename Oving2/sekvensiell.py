@@ -8,7 +8,7 @@ class Sekvensiell(Spiller):
         self.i = 0
 
     def velg_aksjon(self):
-        aksjon = Spiller.aksjoner[self.index]
+        aksjon = Spiller.aksjoner[self.i]
         self.i += 1
         if self.i == 3:
             self.i = 0

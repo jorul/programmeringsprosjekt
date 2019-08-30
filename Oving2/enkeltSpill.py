@@ -35,4 +35,4 @@ class EnkeltSpill:
                  f'{self.spiller2.oppgi_navn()} valgte {self.spiller2_aksjon}'
                  f' --> {self.resultat}')
         return tekst
-        
+

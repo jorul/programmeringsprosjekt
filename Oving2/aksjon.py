@@ -6,17 +6,19 @@ class Aksjon:
         return self.handling == spiller2.handling
 
     def __gt__(self, spiller2):
-        if self.vinner_over() == spiller2.handling:
-            return True
-        return False
+        if self.taper_mot() == spiller2.handling:
+            return False
+        return True
 
     def __str__(self):
         return self.handling
 
-    def vinner_over(self):
+    def taper_mot(self):
         if self.handling == "stein":
-            return "saks"
-        elif self.handling == "saks":
             return "papir"
-        elif self.handling == "papir":
+        elif self.handling == "saks":
             return "stein"
+        elif self.handling == "papir":
+            return "saks"
+
+
