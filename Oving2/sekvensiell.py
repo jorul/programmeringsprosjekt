@@ -1,8 +1,9 @@
+"""Modul for klassen Sekvensiell"""
 from spiller import Spiller
 
 
 class Sekvensiell(Spiller):
-
+    """Spiller som spiller aksjonene i fast rekkefølge sekvensielt"""
     def __init__(self):
         super().__init__()
         self.i = 0

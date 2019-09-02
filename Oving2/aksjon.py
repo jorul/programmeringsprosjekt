@@ -1,4 +1,10 @@
+"""Aksjon defineres"""
+
+
 class Aksjon:
+    """En aksjon har en handling,
+    og handlingene til ulike aksjoner 
+    kan vurderes for å finne ut hvem som vinner"""
     def __init__(self, handling):
         self.handling = handling
 
@@ -14,11 +20,10 @@ class Aksjon:
         return self.handling
 
     def taper_mot(self):
+        """returnerer den handlingen som den 
+        handlingen metoden brukes på vil tape mot"""
         if self.handling == "stein":
             return "papir"
-        elif self.handling == "saks":
+        if self.handling == "saks":
             return "stein"
-        elif self.handling == "papir":
-            return "saks"
-
-
+        return "saks"

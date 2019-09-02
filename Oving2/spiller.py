@@ -1,10 +1,11 @@
+"""Modul for klassen Spiller"""
 import abc
 from aksjon import Aksjon
 
 
 class Spiller:
+    """Abstract base class for ulike typer spillere"""
     __metaclass__ = abc.ABCMeta
-
     stein = Aksjon("stein")
     saks = Aksjon("saks")
     papir = Aksjon("papir")
@@ -19,7 +20,6 @@ class Spiller:
     def velg_aksjon(self):
         return
 
-
     def motta_resultat(self, selv_valgt, motstander_valgt, poeng):
         self.poeng += poeng
         self.historie.append(selv_valgt)
@@ -27,8 +27,7 @@ class Spiller:
 
     def oppgi_navn(self):
         return self.__class__.__name__
-    
-    
+
     def vinner_over(self, aksjon):
         if aksjon == self.stein:
             return self.papir
@@ -39,11 +38,10 @@ class Spiller:
     @staticmethod
     def mest_vanlig(liste):
         teller = 0
-        mest_vanlig = liste[0]     
-        for i in liste: 
-            høyest = liste.count(i) 
-            if(høyest> teller): 
-                teller = høyest
+        mest_vanlig = liste[0]
+        for i in liste:
+            hoyest = liste.count(i)
+            if hoyest > teller:
+                teller = hoyest
                 mest_vanlig = i
         return mest_vanlig
-
