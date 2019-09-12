@@ -6,8 +6,8 @@ from historiker import Historiker
 from mangeSpill import MangeSpill
 
 
-s2 = MestVanlig()
-s1 = Historiker(2)
+s2 = Tilfeldig()
+s1 = Tilfeldig()
 
 testing = MangeSpill(s1, s2, 100)
 testing.arranger_turnering()

@@ -16,7 +16,7 @@ class MangeSpill():
     def arranger_enkeltspill(self, i):
         """Metode for å gjennomføre et enkeltspill"""
         self.nyttspill.gjennomfoer_spill()
-        #print(self.nyttspill)
+        print(self.nyttspill)
         self.resultater.append((self.spiller1.poeng, self.spiller2.poeng, i))
         #print(self.resultater)
 
