@@ -1,10 +1,16 @@
-from cipher import affine
+from cipher import *
 from person import *
 from crypto_utils import *
+import string
 
-senderen = sender((2, 1), affine())
-mottaker = reciver((2, 1), affine())
 
-senderen.send_encoded(mottaker, "abc, it's easy like 123")
+senderen = sender("cake", unbreakable())
+mottaker = reciver("cake", unbreakable())
+hackeren = Hacker()
+
+senderen.send_encoded(mottaker, "I like to eat")
 print(senderen)
 print(mottaker)
+print()
+
+senderen.send_encoded_to_hacker(hackeren, "I like to eat")
