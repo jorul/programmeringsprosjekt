@@ -1,29 +1,37 @@
-from crypto_utils import *
-from random import randint
+"""Module for superclass cipher and all types of ciphers"""
 import abc
+from random import randint
+from crypto_utils import modular_inverse, blocks_from_text, text_from_blocks, generate_random_prime
 
 
-class cipher:
+
+class Cipher:
+    """abstract class with abstract classes encode and decode"""
     def __init__(self):
         self.alphabet = [chr(x) for x in range(32, 127)]
 
     @abc.abstractmethod
     def encode(self, text, key):
+        """abstract method for encoding"""
         return
 
     @abc.abstractmethod
     def decode(self, text, key):
+        """abstract method for decoding"""
         return
 
     def vertify(self, text, key):
+        """method for verifying that the encoding and decoding is correct"""
         return text == self.decode(self.encode(text, key), key)
 
 
-class ceasar(cipher):
+class Ceasar(Cipher):
+    """clss using additon to encode"""
     def __init__(self):
         super().__init__()
 
     def encode(self, text, key):
+        """method adding ASCII-values to encode"""
         text_list = [char for char in text]
         for i in range(0, len(text_list)):
             index_in_alphabet = self.alphabet.index(text_list[i])
@@ -32,14 +40,17 @@ class ceasar(cipher):
         return ''.join(str(e) for e in text_list)
 
     def decode(self, text, key):
+        """method to find inverse key and decode"""
         return self.encode(text, 95-key)
 
 
-class multiplicative(cipher):
+class Multiplicative(Cipher):
+    """Class using multiplying to encode"""
     def __init__(self):
         super().__init__()
 
     def encode(self, text, key):
+        """method to encode using multiplying ASCII-values with key"""
         text_list = [char for char in text]
         for i in range(0, len(text_list)):
             index_in_alphabet = self.alphabet.index(text_list[i])
@@ -48,21 +59,24 @@ class multiplicative(cipher):
         return ''.join(str(e) for e in text_list)
 
     def decode(self, text, key):
+        """method to find inverse key and decode"""
         return self.encode(text, modular_inverse(key, 95))
 
 
-class affine(cipher):
+class Affine(Cipher):
+    """Class using both multiplying and addition to encode"""
     def __init__(self):
         super().__init__()
 
     def encode(self, text, key):
-        return ceasar().encode(multiplicative().encode(text, key[0]), key[1])
+        return Ceasar().encode(Multiplicative().encode(text, key[0]), key[1])
 
     def decode(self, text, key):
-        return multiplicative().decode(ceasar().decode(text, key[1]), key[0])
+        return Multiplicative().decode(Ceasar().decode(text, key[1]), key[0])
 
 
-class unbreakable(cipher):
+class Unbreakable(Cipher):
+    """Class using word to encode"""
     def __init__(self):
         super().__init__()
 
@@ -88,7 +102,8 @@ class unbreakable(cipher):
         return self.encode(text, new_key)
 
 
-class RSA(cipher):
+class RSA(Cipher):
+    """Class using RSA method to encode and decode"""
     def encode(self, text, key):
         n, e = key
         block_list = blocks_from_text(text, 1)
@@ -100,15 +115,16 @@ class RSA(cipher):
         decoded_text = text_from_blocks(blocks, 1)
         return decoded_text
 
-    def generate_keys(self):
+    @staticmethod
+    def generate_keys():
         """genererer nøkler og returnerer [private-key, public-key]"""
-        p = 1
+        p_1 = 1
         q = 1
-        while p == q:
-            p = generate_random_prime(8)
+        while p_1 == q:
+            p_1 = generate_random_prime(8)
             q = generate_random_prime(8)
-        n = p * q
-        phi = (p-1)*(q-1)
+        n = p_1 * q
+        phi = (p_1-1)*(q-1)
         d = None
         while d is None:
             e = randint(3, phi - 1)
